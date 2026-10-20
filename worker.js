@@ -111,4 +111,4 @@ export class Room {
   }
   async removePlayer(id){const room=await this.state.storage.get('room');if(!room)return;room.players=room.players.filter(p=>p.id!==id);await this.state.storage.put('room',room);this.broadcast({type:'state',players:room.players,status:room.status});}
   broadcast(data){const raw=JSON.stringify(data);for(const ws of this.sockets.keys()){try{ws.send(raw)}catch{this.sockets.delete(ws)}}}
-}
+} 
