@@ -1,0 +1,18 @@
+مجلس — حزمة السيرفر
+
+فحص سريع: worker.js صحيح نحويًا، ويستخدم Durable Object باسم Room عبر binding اسمه ROOMS.
+
+مهم: لا تلصق worker.js وحده في Quick Edit؛ هذا لا يطبق إعدادات wrangler.toml ولا يسجل Durable Object تلقائيًا.
+
+النشر الصحيح:
+1) فك ضغط الحزمة على كمبيوتر عليه Node.js.
+2) افتح Terminal داخل المجلد الذي يحتوي worker.js وwrangler.toml.
+3) نفّذ: npx wrangler login
+4) ثم: npx wrangler deploy
+5) وافق على إنشاء/تطبيق migration الخاصة بـ Room إذا طلب Wrangler ذلك.
+6) بعد النشر افتح https://majlis-rooms.majlisgames.workers.dev — المفترض يظهر JSON فيه service: Majlis Rooms وstatus: ok.
+7) جرّب إنشاء غرفة من الموقع https://majlis-cru.pages.dev/ .
+
+قبل النشر: تأكد أن حساب Cloudflare المحدد هو الحساب الذي يحتوي Worker باسم majlis-rooms. إذا كان Durable Object Room مسجلًا بالفعل في هذا الـ Worker، لا تعِد تسمية الفئة أو تحذف migration؛ راجع حالة النشر قبل الموافقة على أي تغيير.
+
+ملاحظة: لا يمكن تطبيق ملف wrangler.toml بمجرد رفع worker.js من لوحة Quick Edit. إذا كنت تستخدم iPad فقط، استخدم مستودع GitHub واربطه من Workers & Pages > Create > Import a repository، أو أكمل النشر من كمبيوتر.
